@@ -136,7 +136,7 @@ function batallaKana(c, ctx, tipo) {
   const cola = srsCola(pool, claveKana, 14, 6);
   const yokai = elegir(YOKAI);
   let hpE = 10, hpJ = 5, combo = 0, i = 0, terminado = false, aciertos = 0;
-  const cvE = el('canvas'), cvJ = el('img.arky', { src: 'assets/arky/sprites/96/right_idle.png', alt: 'Arky' });
+  const cvE = el('canvas'), cvJ = el('img.arky', { src: 'assets/arky/limpio/right_idle.png', alt: 'Arky' });
   dibujarYokai(cvE, yokai);
   const barraE = el('i', { style: { width: '100%' } }), barraJ = el('i', { style: { width: '100%' } });
   const zonaPregunta = el('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', width: '100%' } });
