@@ -3,6 +3,18 @@
 // Markup: [superficie|lectura|significado] o [superficie|significado]
 
 export const VECINOS = {
+  mio: {
+    nombre: 'みお',
+    es: 'Mio (la acomodadora del cine)',
+    charlas: [
+      { ja: '[映画|えいが|película][が|(sujeto)][好き|すき|que gusta][ですか|¿es?]？', es: '¿Te gustan las películas?',
+        r: [{ ja: '[はい|sí]、[大好き|だいすき|me encanta][です|es]！', es: '¡Sí, me encantan!', ok: 1 }, { ja: '[水|みず|agua][を|(objeto)][ください|por favor]。', es: 'Agua, por favor.' }, { ja: '[おやすみ|que descanses]。', es: 'Que descanses.' }] },
+      { ja: '[字幕|じまく|subtítulos][の|de][言葉|ことば|palabras][を|(objeto)][触って|さわって|tocá][みて|probá]！', es: '¡Probá tocar las palabras de los subtítulos!',
+        r: [{ ja: '[はい|sí]、[やってみます|voy a probar]！', es: '¡Sí, voy a probar!', ok: 1 }, { ja: '[百|ひゃく|cien][円|えん|yenes][です|es]。', es: 'Son cien yenes.' }, { ja: '[ごちそうさま|gracias por la comida]。', es: 'Gracias por la comida.' }] },
+      { ja: '[今日|きょう|hoy][は|わ|(tema)][何|なに|qué][を|(objeto)][見ます|みます|vas a ver]か？', es: '¿Qué vas a ver hoy?',
+        r: [{ ja: '[アニメ|animé][を|(objeto)][見ます|みます|voy a ver]！', es: '¡Voy a ver animé!', ok: 1 }, { ja: '[ドラマ|serie][です|es]。', es: 'Una serie.', ok: 1 }, { ja: '[雨|あめ|lluvia][です|es]。', es: 'Es lluvia.' }] },
+    ],
+  },
   obaasan: {
     nombre: 'おばあさん',
     es: 'Obaa-san (la abuela)',
