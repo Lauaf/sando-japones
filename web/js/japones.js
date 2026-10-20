@@ -121,18 +121,6 @@ function dibujarYokai(cv, y) {
   if (y.n === 'きつね' || y.n === 'たぬき') { g.fillStyle = y.col2; g.fillRect(7, 3, 4, 4); g.fillRect(21, 3, 4, 4); }
   if (y.n === 'かっぱ') { g.fillStyle = '#e9e4c4'; g.beginPath(); g.ellipse(16, 4, 6, 2, 0, 0, 7); g.fill(); }
 }
-function dibujarHeroe(cv) {
-  cv.width = 32; cv.height = 32;
-  const g = cv.getContext('2d');
-  g.fillStyle = 'rgba(0,0,0,.3)'; g.beginPath(); g.ellipse(16, 30, 9, 2, 0, 0, 7); g.fill();
-  g.fillStyle = '#e8546b'; g.fillRect(9, 15, 14, 10);
-  g.fillStyle = '#2a2140'; g.fillRect(10, 25, 4, 5); g.fillRect(18, 25, 4, 5);
-  g.fillStyle = '#f3c9a0'; g.fillRect(10, 4, 12, 11);
-  g.fillStyle = '#2b2233'; g.fillRect(9, 2, 14, 4); g.fillRect(9, 5, 2, 6); g.fillRect(21, 5, 2, 6);
-  g.fillStyle = '#241a2e'; g.fillRect(13, 9, 2, 2); g.fillRect(18, 9, 2, 2);
-  g.fillStyle = '#f6eedb'; g.fillRect(24, 10, 2, 16); g.fillStyle = '#8a5a3b'; g.fillRect(24, 22, 2, 5); // pincel
-}
-
 function flotar(texto, contenedor, color) {
   const r = contenedor.getBoundingClientRect();
   const p = document.getElementById('pantalla').getBoundingClientRect();
@@ -148,8 +136,8 @@ function batallaKana(c, ctx, tipo) {
   const cola = srsCola(pool, claveKana, 14, 6);
   const yokai = elegir(YOKAI);
   let hpE = 10, hpJ = 5, combo = 0, i = 0, terminado = false, aciertos = 0;
-  const cvE = el('canvas'), cvJ = el('canvas');
-  dibujarYokai(cvE, yokai); dibujarHeroe(cvJ);
+  const cvE = el('canvas'), cvJ = el('img.arky', { src: 'assets/arky/sprites/96/right_idle.png', alt: 'Arky' });
+  dibujarYokai(cvE, yokai);
   const barraE = el('i', { style: { width: '100%' } }), barraJ = el('i', { style: { width: '100%' } });
   const zonaPregunta = el('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', width: '100%' } });
   const info = el('div.suave', { style: { minHeight: '1.4em', textAlign: 'center' } });
@@ -157,7 +145,7 @@ function batallaKana(c, ctx, tipo) {
   c.classList.add('centro');
   c.append(
     el('div.batalla',
-      el('div.luchador', el('div', 'あなた'), cvJ, el('div.hp', barraJ)),
+      el('div.luchador', el('div', 'アーキー Arky'), cvJ, el('div.hp', barraJ)),
       el('div.mediano', 'VS'),
       el('div.luchador', el('div', nombreE), cvE, el('div.hp.enemigo', barraE))),
     zonaPregunta, info);
