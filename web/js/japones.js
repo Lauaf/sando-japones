@@ -270,7 +270,7 @@ function menuVocab(c, ctx) {
     })));
 }
 
-function sesionVocab(c, ctx, items, soloModos = null) {
+export function sesionVocab(c, ctx, items, soloModos = null) {
   const clave = soloModos ? (v => 'kanji:' + v.p) : claveVoc;
   const cola = srsCola(items, clave, 12, avanzado() ? 8 : 5);
   let i = 0, ok = 0;
