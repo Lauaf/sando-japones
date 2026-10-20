@@ -612,13 +612,16 @@ export async function charlarVecino(id) {
   const elegida = await decir({ nombre: v.nombre, toks: ch.toks, trad: ch.es, tradOculta: !ayuda, opciones: ops, cancelable: true });
   if (!elegida) return cerrarDialogo();
   hablar(lecturaPlana(elegida.toks));
+  const cara = tipo => dispatchEvent(new CustomEvent('sando:expresion', { detail: tipo })); // la cara de Arky
   if (elegida.ok) {
     sfx.bien();
+    cara('feliz');
     evento('vecino_jp');
     ganarXP('jp', 6, 'charla con vecino');
     await decir({ nombre: v.nombre, toks: parsear(elegir(['[うん|sí]、[そうそう|eso eso]！', '[ありがとう|gracias]！', '[いいね|qué bueno]！', '[へえ|ah, mirá]、[すごい|genial]！'])), trad: `✓ Bien. Elegiste: "${elegida.es}"` });
   } else {
     sfx.mal();
+    cara('sorprendido');
     const buena = ch.r.find(x => x.ok);
     await decir({ nombre: v.nombre, toks: parsear('[え|eh]…？'), trad: `✗ "${elegida.es}" no encaja. Mejor: "${lecturaPlana(buena.toks)}" (${buena.es})` });
     ganarXP('jp', 1);
