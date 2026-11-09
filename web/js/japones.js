@@ -48,33 +48,33 @@ function hubDojo(c, ctx) {
   const resK = srsResumen(todosKana('k'), claveKana);
   const resV = srsResumen(VOCAB, claveVoc);
   const kataBloq = P.jp.nivel === 'cero' && resH.dominados < 30;
-  const tarjeta = (ico, tit, desc, tag, onclick, bloq) =>
+  const tarjeta = (tit, desc, tag, onclick, bloq) =>
     el('button.tarjeta' + (bloq ? '.bloq' : ''), { onclick: bloq ? () => toast(bloq) : onclick },
-      el('div.t-ico', ico), el('div.t-tit', tit), el('div.t-desc', desc), tag ? el('div.t-tag', tag) : null);
+      el('div.t-tit', tit), el('div.t-desc', desc), tag ? el('div.t-tag', tag) : null);
   const resA = srsResumen(poolVocab(), claveVoc);
   const resKanji = srsResumen(poolVocab().filter(v => tieneKanji(v.p)), v => 'kanji:' + v.p);
   const extra = avanzado() ? [
-    tarjeta('📝', '文法 Gramática', `Completá el hueco: ${P.jp.nivel === 'n3' ? 'N4 y N3' : 'N4'} (ように, ことになる, はず, わけ, おかげで…).`,
+    tarjeta('文法 Gramática', `Completá el hueco: ${P.jp.nivel === 'n3' ? 'N4 y N3' : 'N4'} (ように, ことになる, はず, わけ, おかげで…).`,
       `${P.stats.gramatica_ok || 0} aciertos`, () => ctx.ir('文法 Gramática', gramatica)),
-    tarjeta('漢', '漢字 Lecturas', 'Ves la palabra en kanji y elegís o escribís cómo se lee.',
+    tarjeta('漢字 Lecturas', 'Ves la palabra en kanji y elegís o escribís cómo se lee.',
       `${resKanji.dominados}/${resKanji.total} dominadas`, () => ctx.ir('漢字 Lecturas', (cc, cx) => sesionVocab(cc, cx, poolVocab().filter(v => tieneKanji(v.p)), ['lectura', 'escribir-lectura']))),
   ] : [];
     c.append(
     el('div.fila', el('div.suave', 'Clic en cualquier palabra japonesa para ver su significado y escucharla. Usá auriculares para la pronunciación.')),
     el('div.rejilla',
       ...extra,
-      tarjeta('👻', 'ひらがな Batalla', 'Derrotá yokai leyendo hiragana. Las filas nuevas se desbloquean al dominar las anteriores.',
+      tarjeta('ひらがな Batalla', 'Derrotá yokai leyendo hiragana. Las filas nuevas se desbloquean al dominar las anteriores.',
         `${resH.dominados}/${resH.total} dominados · ${filasDesbloqueadas('h')}/${HIRAGANA.length} filas`, () => ctx.ir('ひらがな Batalla', (cc, cx) => batallaKana(cc, cx, 'h'))),
-      tarjeta('👹', 'カタカナ Batalla', 'Lo mismo con katakana (palabras extranjeras: コーヒー, ピアノ…).',
+      tarjeta('カタカナ Batalla', 'Lo mismo con katakana (palabras extranjeras: コーヒー, ピアノ…).',
         `${resK.dominados}/${resK.total} dominados`, () => ctx.ir('カタカナ Batalla', (cc, cx) => batallaKana(cc, cx, 'k')),
         kataBloq ? 'Dominá 30 hiragana primero (o cambiá tu nivel en Ajustes).' : null),
-      tarjeta('📚', '単語 Vocabulario', avanzado() ? 'Vocabulario N4/N3 (y de café y piano) con repaso espaciado.' : 'Palabras útiles con repaso espaciado: escuchar, leer y escribir.',
+      tarjeta('単語 Vocabulario', avanzado() ? 'Vocabulario N4/N3 (y de café y piano) con repaso espaciado.' : 'Palabras útiles con repaso espaciado: escuchar, leer y escribir.',
         avanzado() ? `${resA.vencidos} para repasar · ${resA.nuevos} nuevas` : `${resV.vencidos} para repasar · ${resV.nuevos} nuevas`, () => ctx.ir('単語 Vocabulario', menuVocab)),
-      tarjeta('📖', '読む Lectura', 'Historias cortas a tu nivel, tocando palabras para entenderlas.',
+      tarjeta('読む Lectura', 'Historias cortas a tu nivel, tocando palabras para entenderlas.',
         IA.disponible ? 'con IA' : '2 historias offline', () => ctx.ir('読む Lectura', lectura)),
-      tarjeta('💬', '会話 Conversación', 'Charlá en japonés con la IA en situaciones reales. Te corrige con onda.',
+      tarjeta('会話 Conversación', 'Charlá en japonés con la IA en situaciones reales. Te corrige con onda.',
         IA.disponible ? 'IA conectada' : 'necesita IA local', () => ctx.ir('会話 Conversación', menuConversacion)),
-      tarjeta('⚙️', '設定 Ajustes', 'Furigana, romaji y tu nivel.', `furigana ${P.jp.furigana ? 'sí' : 'no'} · romaji ${P.jp.romaji ? 'sí' : 'no'}`,
+      tarjeta('設定 Ajustes', 'Furigana, romaji y tu nivel.', `furigana ${P.jp.furigana ? 'sí' : 'no'} · romaji ${P.jp.romaji ? 'sí' : 'no'}`,
         () => ctx.ir('設定 Ajustes', ajustesJp)),
     ));
 }
@@ -199,7 +199,7 @@ function batallaKana(c, ctx, tipo) {
       sfx.bien(); sfx.golpe();
       cvE.classList.remove('sacudir'); void cvE.offsetWidth; cvE.classList.add('sacudir');
       flotar(dmg > 1 ? `¡COMBO -${dmg}!` : `-${dmg}`, cvE, '#ffd27a');
-      info.replaceChildren(el('span.ok', `✓ ${k.k} = ${k.r}`), combo >= 3 ? el('span', `  🔥 combo x${combo}`) : '');
+      info.replaceChildren(el('span.ok', `✓ ${k.k} = ${k.r}`), combo >= 3 ? el('span', `  combo x${combo}`) : '');
     } else {
       combo = 0;
       hpJ = Math.max(0, hpJ - 1);
@@ -207,7 +207,7 @@ function batallaKana(c, ctx, tipo) {
       boton?.classList.add('incorrecta');
       cvJ.classList.remove('sacudir'); void cvJ.offsetWidth; cvJ.classList.add('sacudir');
       flotar('-1 ♥', cvJ, '#ff8f8f');
-      info.replaceChildren(el('span.no', `✗ ${k.k} se lee "${k.r}"`), MNEMO[k.k] ? el('div', `💡 ${MNEMO[k.k]}`) : null);
+      info.replaceChildren(el('span.no', `✗ ${k.k} se lee "${k.r}"`), MNEMO[k.k] ? el('div', `Truco: ${MNEMO[k.k]}`) : null);
     }
     actualizarHP();
     guardar();
@@ -227,7 +227,7 @@ function batallaKana(c, ctx, tipo) {
       el('div.mediano', gano ? `¡Derrotaste a ${yokai.n}!` : `${yokai.n} ganó esta vez…`),
       el('div', `${aciertos} aciertos · +${xp} XP`),
       el('div.fila.centro',
-        el('button.btn.prim', { onclick: () => ctx.rehacer() }, '⚔ Otra batalla'),
+        el('button.btn.prim', { onclick: () => ctx.rehacer() }, 'Otra batalla'),
         el('button.btn', { onclick: () => ctx.volver() }, 'Volver al dojo')));
     info.textContent = '';
   }
@@ -317,7 +317,7 @@ export function sesionVocab(c, ctx, items, soloModos = null) {
       cont.append(el('div.suave', '¿Cómo se dice?'), el('div.mediano', v.s),
         opcionesBtn(mezclar([v, ...otros]), o => el('span', o.p, tieneKanji(o.p) && P.jp.furigana ? el('span.suave', ` (${o.r})`) : '')));
     } else if (modo === 'escuchar') {
-      cont.append(el('div.suave', 'Escuchá y elegí'), el('button.btn.mediano', { onclick: () => hablar(v.r, 'ja', 0.8) }, '🔊'),
+      cont.append(el('div.suave', 'Escuchá y elegí'), el('button.btn.mediano', { onclick: () => hablar(v.r, 'ja', 0.8) }, 'Escuchar'),
         opcionesBtn(mezclar([v, ...otros]), o => el('span', o.p, el('span.suave', ` · ${o.s}`))));
       setTimeout(() => hablar(v.r, 'ja', 0.8), 200);
     } else {
@@ -388,7 +388,7 @@ function gramatica(c, ctx) {
     const ops = mezclar(g.o.map((o, n) => ({ o, bien: n === 0 })));
     const [antes, despues] = g.s.split('＿＿');
     const hueco = el('span', { style: { borderBottom: '3px solid var(--sakura)', padding: '0 .4em', color: 'var(--sakura2)' } }, '　？　');
-    const trad = el('div.suave', { style: { cursor: 'pointer' } }, '👁 traducción');
+    const trad = el('div.suave', { style: { cursor: 'pointer' } }, 'ver traducción');
     trad.onclick = () => { trad.textContent = g.es; };
     const grid = el('div.opciones4', ops.map((x, n) => el('button.btn', { onclick: async e => {
       if (grid.dataset.listo) return;
@@ -400,7 +400,7 @@ function gramatica(c, ctx) {
       if (x.bien) { ok++; sfx.bien(); evento('gramatica_ok'); evento('vocab_ok'); } else { sfx.mal(); e.currentTarget.classList.add('incorrecta'); }
       hablar(antes + ops.find(z => z.bien).o + despues);
       trad.textContent = g.es;
-      zona.append(el('div', `💡 ${g.e}`), el('button.btn.prim', { onclick: sig }, 'Siguiente ▶'));
+      zona.append(el('div', g.e), el('button.btn.prim', { onclick: sig }, 'Siguiente ▶'));
       guardar();
     } }, el('span.suave', `${n + 1} `), x.o)));
     teclaNum = e => { const n = +e.key; if (n >= 1 && n <= 4) grid.children[n - 1].click(); };
@@ -451,14 +451,14 @@ Formato exacto:
   const lista = el('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '1.15em' } });
   h.oraciones.forEach((o, n) => {
     const r = renderTokens(o.toks, { furigana: P.jp.furigana, romaji: P.jp.romaji });
-    const trad = el('div.suave', { style: { fontSize: '.7em', cursor: 'pointer' } }, '👁 traducción');
+    const trad = el('div.suave', { style: { fontSize: '.7em', cursor: 'pointer' } }, 'ver traducción');
     trad.onclick = () => { trad.textContent = o.es; };
     lista.append(el('div.panel',
-      el('div.fila', el('button.btn.chico', { onclick: () => hablar(lecturaPlana(o.toks), 'ja', 0.85) }, '🔊'), el('span.suave', `${n + 1}`)),
+      el('div.fila', el('button.btn.chico', { onclick: () => hablar(lecturaPlana(o.toks), 'ja', 0.85) }, 'Oír'), el('span.suave', `${n + 1}`)),
       r.nodo, r.romajiNodo, trad));
   });
   const preg = el('div.panel',
-    el('div', `❓ ${h.pregunta.es}`),
+    el('div', `Pregunta: ${h.pregunta.es}`),
     el('div.opciones4', { style: { marginTop: '10px' } }, h.pregunta.ops.map((o, n) => el('button.btn', {
       onclick: e => {
         const bien = n === +h.pregunta.ok;
@@ -474,12 +474,12 @@ Formato exacto:
 // ---------- Conversación con IA ----------
 function menuConversacion(c, ctx) {
   if (!IA.disponible) {
-    c.append(el('div.panel', el('div', '💤 La IA local está apagada.'),
+    c.append(el('div.panel', el('div', 'La IA local está apagada.'),
       el('div.suave', 'Prendé "Iniciar IA" en el escritorio (o salí del Modo Juego) y volvé. Mientras tanto, hablá con los vecinos del pueblo: ellos te hablan en japonés sin IA.')));
   }
   c.append(el('div.rejilla', ESCENARIOS.map(s => el('button.tarjeta' + (IA.disponible ? '' : '.bloq'), {
-    onclick: () => IA.disponible ? ctx.ir(`${s.ico} ${s.tit}`, (cc, cx) => chat(cc, cx, s)) : toast('Necesita la IA local encendida'),
-  }, el('div.t-ico', s.ico), el('div.t-tit', s.tit), el('div.t-desc', s.desc)))));
+    onclick: () => IA.disponible ? ctx.ir(s.tit, (cc, cx) => chat(cc, cx, s)) : toast('Necesita la IA local encendida'),
+  }, el('div.t-tit', s.tit), el('div.t-desc', s.desc)))));
 }
 
 function sistemaChat(esc) {
@@ -512,10 +512,10 @@ function chat(c, ctx, esc) {
   function burbujaIA(r) {
     const toks = normalizar(r.toks);
     const rr = renderTokens(toks, { furigana: P.jp.furigana, romaji: P.jp.romaji });
-    const trad = el('div.trad', { style: { cursor: 'pointer' } }, P.jp.nivel === 'cero' ? r.es : '👁 traducción');
+    const trad = el('div.trad', { style: { cursor: 'pointer' } }, P.jp.nivel === 'cero' ? r.es : 'ver traducción');
     trad.onclick = () => { trad.textContent = r.es; };
-    const b = el('div.burbuja.ellos', el('button.btn.chico', { style: { float: 'right', marginLeft: '8px' }, onclick: () => hablar(lecturaPlana(toks)) }, '🔊'), rr.nodo, rr.romajiNodo, trad,
-      r.correccion ? el('div.corr', '✏️ ', r.correccion) : null);
+    const b = el('div.burbuja.ellos', el('button.btn.chico', { style: { float: 'right', marginLeft: '8px' }, onclick: () => hablar(lecturaPlana(toks)) }, 'Oír'), rr.nodo, rr.romajiNodo, trad,
+      r.correccion ? el('div.corr', 'Corrección: ', r.correccion) : null);
     caja.append(b);
     caja.scrollTop = caja.scrollHeight;
     hablar(lecturaPlana(toks));

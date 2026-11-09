@@ -4,11 +4,11 @@ El dojo de Haru-sensei: japonés desde cero hasta N3.
 
 | | |
 |---|---|
-| 👻 **Batallas de kana** | Derrotá yokai leyendo hiragana y katakana. Las filas nuevas se desbloquean al dominar las anteriores. |
-| 📚 **Vocabulario** | Palabras útiles con repaso espaciado (Leitner): escuchar, leer y escribir. |
-| 📖 **Lectura** | Historias cortas a tu nivel; tocá cualquier palabra para ver su significado y escucharla. |
-| 📝 **Gramática N4/N3** | Completá el hueco (ように, ことになる, はず, わけ, おかげで…). |
-| 💬 **Conversación** | Charlá en japonés con la IA en situaciones reales; te corrige. |
+| **Batallas de kana** | Derrotá yokai leyendo hiragana y katakana. Las filas nuevas se desbloquean al dominar las anteriores. |
+| **Vocabulario** | Palabras útiles con repaso espaciado (Leitner): escuchar, leer y escribir. |
+| **Lectura** | Historias cortas a tu nivel; tocá cualquier palabra para ver su significado y escucharla. |
+| **Gramática N4/N3** | Completá el hueco (ように, ことになる, はず, わけ, おかげで…). |
+| **Conversación** | Charlá en japonés con la IA en situaciones reales; te corrige. |
 
 La primera vez te pregunta desde dónde arrancás (cero, kana, N5, N4, N3). Las misiones del día y los logros (hiragana, katakana, rachas) son de esta senda.
 
@@ -29,7 +29,7 @@ Todo se puede usar con mouse, con el teclado (flechas para moverse entre opcione
 
 ## Partida y respaldo
 
-El progreso (nivel, racha, misiones del día, logros) se guarda solo en `datos/partida.json` (con una copia por día) y en el navegador. Desde **⚙ Opciones** podés exportar un respaldo y restaurarlo.
+El progreso (nivel, racha, misiones del día, logros) se guarda solo en `datos/partida.json` (con una copia por día) y en el navegador. Desde **Opciones** podés exportar un respaldo y restaurarlo.
 
 Como usa el mismo formato que [Sandō](https://github.com/Lauaf/Sando), podés exportar tu partida desde Sandō y restaurarla acá para seguir con el mismo progreso.
 

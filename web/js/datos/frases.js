@@ -93,10 +93,10 @@ export const VECINOS = {
 
 // Escenarios para la conversación libre con IA (Haru-sensei hace de interlocutor).
 export const ESCENARIOS = [
-  { id: 'presentacion', ico: '👋', tit: 'Presentarte', desc: 'Conocés a alguien nuevo en el templo.', rol: 'una persona amable que conoce al alumno en un santuario y le pregunta su nombre, de dónde es y sus hobbies' },
-  { id: 'kissaten', ico: '☕', tit: 'Pedir en un kissaten', desc: 'Pedí un café en una cafetería de Tokio.', rol: 'el/la mozo/a de un kissaten (cafetería tradicional) en Tokio que toma el pedido, pregunta si lo quiere caliente o frío, con leche o azúcar, y cobra' },
-  { id: 'konbini', ico: '🏪', tit: 'En el konbini', desc: 'Comprá cosas y pagá en la caja.', rol: 'el cajero de un konbini que pregunta si quiere bolsa, si calienta la comida, y dice el total en yenes' },
-  { id: 'direcciones', ico: '🗺️', tit: 'Preguntar el camino', desc: 'Estás perdido buscando la estación.', rol: 'un transeúnte que explica cómo llegar a la estación con indicaciones simples (derecha, izquierda, derecho)' },
-  { id: 'musica', ico: '🎹', tit: 'Hablar de música', desc: 'Charlá con una pianista sobre lo que te gusta.', rol: 'una pianista que charla sobre música, compositores favoritos y cuánto practica' },
-  { id: 'libre', ico: '💬', tit: 'Charla libre', desc: 'Lo que quieras, a tu nivel.', rol: 'Haru-sensei, un profesor de japonés paciente y divertido que charla de cualquier tema' },
+  { id: 'presentacion', tit: 'Presentarte', desc: 'Conocés a alguien nuevo en el templo.', rol: 'una persona amable que conoce al alumno en un santuario y le pregunta su nombre, de dónde es y sus hobbies' },
+  { id: 'kissaten', tit: 'Pedir en un kissaten', desc: 'Pedí un café en una cafetería de Tokio.', rol: 'el/la mozo/a de un kissaten (cafetería tradicional) en Tokio que toma el pedido, pregunta si lo quiere caliente o frío, con leche o azúcar, y cobra' },
+  { id: 'konbini', tit: 'En el konbini', desc: 'Comprá cosas y pagá en la caja.', rol: 'el cajero de un konbini que pregunta si quiere bolsa, si calienta la comida, y dice el total en yenes' },
+  { id: 'direcciones', tit: 'Preguntar el camino', desc: 'Estás perdido buscando la estación.', rol: 'un transeúnte que explica cómo llegar a la estación con indicaciones simples (derecha, izquierda, derecho)' },
+  { id: 'musica', tit: 'Hablar de música', desc: 'Charlá con una pianista sobre lo que te gusta.', rol: 'una pianista que charla sobre música, compositores favoritos y cuánto practica' },
+  { id: 'libre', tit: 'Charla libre', desc: 'Lo que quieras, a tu nivel.', rol: 'Haru-sensei, un profesor de japonés paciente y divertido que charla de cualquier tema' },
 ];
